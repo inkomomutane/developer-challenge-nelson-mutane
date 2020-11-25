@@ -1,3 +1,5 @@
+import 'package:xml/xml.dart';
+
 import 'Currency.dart';
 import 'Language.dart';
 import 'RegionalBlock.dart';
@@ -64,7 +66,7 @@ class Country{
     'flag':flag,
     'nativeName':nativeName,
     'population':population,
-    'this':region,
+    'region':region,
     'subregion':subregion,
     'timezones':timezones,
     'alpha2Code':alpha2Code,
@@ -119,5 +121,109 @@ class Country{
   return 'Country( ${toJson.toString()})';
   }
 
+  XmlBuilder  toXml(XmlBuilder builder){
+    builder.element('Country', nest: () {
+    builder.element('name', nest: name);
+    builder.element('topLevelDomain', nest: () {
+      topLevelDomain.forEach((element) { builder.element('element', nest: element);});
+    });
+    builder.element('alpha2Code', nest: alpha2Code);
+    builder.element('alpha3Code', nest: alpha3Code);
+    builder.element('callingCodes', nest: (){
+      callingCodes.forEach((element) { 
+        builder.element('element', nest: element);
+      });
+    });
+
+    builder.element('capital', nest: capital);
+      builder.element('altSpellings', nest: (){
+      altSpellings.forEach((element) { 
+        builder.element('element', nest: element);
+      });
+    });
+      builder.element('region', nest: region);
+      builder.element('subregion', nest: subregion);
+      builder.element('population', nest: population);
+        builder.element('latlng', nest: (){
+      latlng.forEach((element) { 
+        builder.element('element', nest: element);
+      });
+    });
+    builder.element('demonym', nest: demonym);
+      builder.element('area', nest: area);
+      builder.element('gini', nest: gini);
+
+    builder.element('timezones', nest: (){
+      timezones.forEach((element) { 
+        builder.element('element', nest: element);
+      });
+    });
+    builder.element('borders', nest: (){
+      borders.forEach((element) { 
+        builder.element('element', nest: element);
+      });
+    });
+    builder.element('nativeName', nest: nativeName);
+    builder.element('numericCode', nest: numericCode);
+
+    builder.element('currencies', nest: (){
+      currencies.forEach((element) {
+          builder.element('element', nest: (){
+            builder.element('name', nest: element.name);
+            builder.element('code', nest: element.code);
+            builder.element('symbol', nest: element.symbol);
+        });
+      });
+    });
+
+    builder.element('languages', nest: (){
+      languages.forEach((element) {
+        builder.element('element', nest: (){
+            builder.element('name', nest: element.name);
+            builder.element('nativeName', nest: element.nativeName);
+            builder.element('iso639_1', nest: element.iso639_1);
+            builder.element('iso639_2', nest: element.iso639_2);
+        });
+      });
+    });
+    builder.element('translations', nest: (){
+      builder.element('br', nest: translations.br);
+      builder.element('de', nest: translations.de);
+      builder.element('es', nest: translations.es);
+      builder.element('fa', nest: translations.fa);
+      builder.element('fr', nest: translations.fr);
+      builder.element('hr', nest: translations.hr);
+      builder.element('it', nest: translations.it);
+      builder.element('ja', nest: translations.ja);
+      builder.element('nl', nest: translations.nl);
+      builder.element('pt', nest: translations.pt);
+    });
+    builder.element('flag', nest: flag);
+    builder.element('regionalBlocs', nest: (){
+      regionalBlocs.forEach((element) { 
+        builder.element('element', nest: (){
+
+              builder.element('name', nest: element.name);
+              builder.element('acronym', nest: element.acronym);
+                builder.element('otherNames', nest: (){
+                element.otherNames.forEach((element) { 
+                    builder.element('element', nest: element);
+                });
+              });
+              builder.element('otherAcronyms', nest: (){
+                element.otherAcronyms.forEach((element) { 
+                    builder.element('element', nest: element);
+                });
+              });
+        });
+      });
+    });
+    builder.element('cioc', nest: cioc);
+    });
+        return builder;
+  }
+  dynamic  toCsv(){
+         return ['$name','$capital','$region','$subregion','$population','$area','$nativeName','$timezones','$flag'];
+  }  
 
 }
