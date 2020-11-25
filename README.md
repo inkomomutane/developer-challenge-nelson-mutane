@@ -1,6 +1,6 @@
 # Challenge Nelson Alexandre Mutane
 
-este e' o arquivo que contem instrucoes de como foi resolvido o desafio lancado.
+este é o arquivo que contem instrucoes de como foi resolvido o desafio lançado.
 
 ## Linguagem usada Dart
 
@@ -8,14 +8,14 @@ este e' o arquivo que contem instrucoes de como foi resolvido o desafio lancado.
 
 Criei 5 classes  e um arquivo que contem a funcao -**main()**- que me ajudaram a fazer um mapeamento correto dos dados da rest Api que sao:
 
-- **Challenge [funcao main]** -
+- **Challenge [função main]** -
 - **Country** -
 - **Currency** -
 - **Language** -
 - **RegionalBlock** -
 - **Translation** -
 onde cada classe possue 2 funcoes basicas que sao **toJson e fromJson()** que me ajudaram de certa forma
-a mapear os objectos para serializacao *Json*.
+a mapear os objetos para serialização *Json*.
 
 ## Segundo
 
@@ -29,14 +29,14 @@ fiz uma transformacao do objecto principal *Country* em *csv e xlsx*.
 
 - e para o caso do *xls* como sendo uma extensao mais antiga do *Excel* tive dificuldade de trabalhar com ela por motivo de incompatibilidade com a alinguagem de programacao que usei.-
 
-## como encontrar arquivo executavel 
+## como encontrar arquivo executável 
 
-- Se tiverem um compilador para dart e' so fazer  a sequencia de comandos seguintes na *Cli*: -
+- Se tiverem um compilador para dart é so fazer  a sequencia de comandos seguintes na *Cli*: -
 
 - **git clone <https://mutane@bitbucket.org/mutane/developer-challenge-nelson-mutane.git>** -
 - **cd Challenge** -
 - **dart run** -
 
-## se nao tiver um compilador dart
+## se não tiver um compilador dart
 
 - Encontre  na raiz da pasta do projecto da pasta que se localiza no link <https://bitbucket.org/mutane/developer-challenge-nelson-mutane/src/master/> com o nome de *Challenge.exe*-
