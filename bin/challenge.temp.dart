@@ -1,0 +1,34 @@
+/*import 'dart:convert' as convert;
+import 'package:excel/excel.dart';
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
+import 'package:xml/xml.dart';
+import 'Country.dart';
+import 'package:csv/csv.dart';
+import 'dart:io';
+
+void main(List<String> arguments) async {
+ var headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiMmIxZjAzYzMyOGE5MjI5YmEyMTdiMzBiMGNhNTcyMGE0ZThmOGEwZjQwMjliM2ViZTljN2E1OWEzZjIyMjc3MjVkYjUwYjU3NGRiNDU5NWMiLCJpYXQiOiIxNjA5MjMyOTY3LjgyMDE5MSIsIm5iZiI6IjE2MDkyMzI5NjcuODIwMTk4IiwiZXhwIjoiMTY0MDc2ODk2Ny44MDkwMzYiLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.qAcpZ0w-fxhaK6nf7jbcYNOdEJ2biB9bGNVRuS80zpblSPRmte70oyA4XVz40br9FcgWCaTwYoxcoijduNYe2XWwkQRNQc1e3I6c-VQLGJWAvSh2dVzXVJObQaMiW1l0xk2_0y7FCNVbI30MylCKUSQjvaRKY1X8e0YW3Wbzbygi5i16bBNcwa0Qj_h-s_cZR5zY5ERvg-RPvZ80GoV8j_p0-eCYUXTs5kkjwpcQksGg8A8xRayg61cW4AWrWLl38iXHT62Y1wEqtJgjGvyWVbdblK-6GfrIo5jLSchBQXvcEVpmUvej9gNfFN30bND3gJRyP9Rlrw73IV3afQ2xk_8mg82Cy8cjm8G502xr8qHwlVuA2_HTX6UZVAZeDSYH2EzHq6mUSj8UpkFu6yI4EhZaTtUiMuistqcI5QmZlup2uAXTN_OqU6bC_SJw3n0_UArS5LVj8ALjlbQ7aoKfAMWWTrDqK8TfvnMUD0-PGdnjnAwoW1Eh0GhhFO9xPuA1uqzoefLIlnI5iD0FmmEXObDFOAKE9aYZhDtpqHp1IpYErIEh_JTuQPxC0ONPMIvMD7JM1uCtic6B3fWzd1jDkVgAB7eXNxON2KBCXZEBmVWTdL5ELWI_ycFsAhlQO47YPcPI3jmRSZTfXUCy3r9-b_g3EOwt1aw7pDZo2I7zEmI',
+  'Cookie': 'salaofenn_session=eyJpdiI6ImJtRndQMDlDTndaVlpnZzU2Q0Y2dUE9PSIsInZhbHVlIjoiRFpJUzdteUhIdml1dWZHRldzZ2xEeE92RGNSNSsydTdudGR5U3lxR0lmcEtVa1pXZWlPSXZweXZzWTVZZWk3U2JYR0FQeVYzUWhFanJsb0NxRWN6VFMrcXBBYzVrUy9EcnlGYm92cWxKZXpoelJxWnl2bElXaHJ3U29rNUgxcWgiLCJtYWMiOiI1ODU3NjgwMmJjNDhiMTVmMDk0MTE4Yzk1YTE5NjYyMTE1ZGE0OGZiMjI3M2IxOWM5NjViMDQ5MDUyZjM0MjYzIn0%3D; XSRF-TOKEN=eyJpdiI6Im02K2ZWOXovbyt4ZThPSU9Zenkyanc9PSIsInZhbHVlIjoiR2w1aGgzS2RvV3hNa0t3RFRYakMwUkpJbzd1Mzd4alRRb2RPdkZtMkd6TTBzd2prN3BnbVVXUVZlVkMxaTNPeGtrMXpmU2NwOXJXVnc5bllELytOQXh5L1BvU1Jwb1hWMFZIcFBLVTBSNXFLaHNhdXpjR2ZSbW1oekJTQTAzU1MiLCJtYWMiOiI1OGYyNzljMTFkNjA3NTcwNWNmNThiMTA1NTQ3ZGJjN2QyNWNiYTgxYjRjMWJmOGI5NzdkMGM3YTJmNGYyZmEwIn0%3D; laravel_session=eyJpdiI6IlFXUUJkcktPS2xyWHhOR2R2eUxLV3c9PSIsInZhbHVlIjoiYWZCMThQT1d2blBiUHpzTTI1b2tGSG9Ca0FMYXU0Q0F3b1RSREN5UlpLNUJqMGVXVGpJeUdSbjNaWHZYd09Sb2dSYlliN0wvY3FJVXdHQndYMDJGTHh4S29PVks3K0NTMDgxcGRlUmR1SGVFLzcwZWkydHF3Tll0YzNrNGpJN1ciLCJtYWMiOiIxOTM4MTdiNTk3NTgzNjY3YjFlY2JlMmUxNTc3NjlhZGY2YjVlZWY4NzkwODg2NzE0OWExNmIyYzNmZWRlMmJjIn0%3D'
+};
+var request = http.MultipartRequest('POST', Uri.parse('https://192.168.137.1:9000/api/tag'));
+request.fields.addAll({
+  'name': ''
+});
+
+request.headers.addAll(headers);
+
+http.StreamedResponse response = await request.send();
+
+if (response.statusCode == 200) {
+  print(await response.stream.bytesToString());
+}
+else {
+  print(response.reasonPhrase);
+}
+
+
+  
+}*/
